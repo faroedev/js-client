@@ -5,15 +5,15 @@
 ```ts
 import * as faroe_client from "@faroe/client";
 
-const actionInvocationEndpointClient = new ActionInvocationEndpointClient()
+const actionInvocationEndpointClient = new ActionInvocationEndpointClient();
 
 const client = new faroe_client.Client(actionInvocationEndpointClient);
 
 const result = await client.createSignup(emailAddress);
 if (!result.ok) {
-    console.log(result.actionInvocationId, result.signup, result.signupToken);
+	console.log(result.actionInvocationId, result.signup, result.signupToken);
 } else {
-    console.log(result.actionInvocationId, result.errorCode);
+	console.log(result.actionInvocationId, result.errorCode);
 }
 ```
 
@@ -31,7 +31,7 @@ npm install @faroe/client
 interface ActionInvocationEndpointClient {
 	// Sends a request to an action invocation endpoint with the request body.
 	// Returns the string body of a 200 response.
-	// An error should be thrown in another cases.
+	// An error is thrown if a 200 response could be received (after one or several attempts).
 	sendActionInvocationEndpointRequest(body: string): Promise<string>;
 }
 ```
@@ -41,6 +41,8 @@ interface ActionInvocationEndpointClient {
 ```ts
 function constructor(endpoint: string, actionInvocationEndpointClient: ActionInvocationEndpointClient);
 ```
+
+A method is available for each action. For example, `Client.getSession()` is mapped to the `get_session` action.
 
 Methods mapped to actions return an `ActionResult`, some extending the `ActionSuccessResult` type with additional fields.
 
