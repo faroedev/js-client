@@ -247,7 +247,7 @@ export class Client {
 			signup_token: signupToken
 		};
 
-		const resultJSONObject = await this.sendActionInvocationRequest("complete_signup_token", argumentsJSONObject);
+		const resultJSONObject = await this.sendActionInvocationRequest("complete_signup", argumentsJSONObject);
 
 		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
 		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
@@ -294,9 +294,9 @@ export class Client {
 		return result;
 	}
 
-	public async createSignin(emailAddress: string): Promise<CreateSigninActionResult> {
+	public async createSignin(userEmailAddress: string): Promise<CreateSigninActionResult> {
 		const argumentsJSONObject: object = {
-			email_address: emailAddress
+			user_email_address: userEmailAddress
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest("create_signin", argumentsJSONObject);
@@ -420,9 +420,9 @@ export class Client {
 		return result;
 	}
 
-	public async verifySigninUserPassword(signupToken: string, password: string): Promise<ActionResult> {
+	public async verifySigninUserPassword(signinToken: string, password: string): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
-			signup_token: signupToken,
+			signin_token: signinToken,
 			password: password
 		};
 
@@ -454,7 +454,7 @@ export class Client {
 			signin_token: signinToken
 		};
 
-		const resultJSONObject = await this.sendActionInvocationRequest("complete_signin_token", argumentsJSONObject);
+		const resultJSONObject = await this.sendActionInvocationRequest("complete_signin", argumentsJSONObject);
 
 		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
 		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
@@ -673,7 +673,7 @@ export class Client {
 	): Promise<GetUserEmailAddressUpdateActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_email_address_update: userEmailAddressUpdateToken
+			user_email_address_update_token: userEmailAddressUpdateToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
@@ -722,13 +722,48 @@ export class Client {
 		return result;
 	}
 
+	public async deleteUserEmailAddressUpdate(
+		sessionToken: string,
+		userEmailAddressUpdateToken: string
+	): Promise<ActionResult> {
+		const argumentsJSONObject: object = {
+			session_token: sessionToken,
+			user_email_address_update_token: userEmailAddressUpdateToken
+		};
+
+		const resultJSONObject = await this.sendActionInvocationRequest(
+			"delete_user_email_address_update",
+			argumentsJSONObject
+		);
+
+		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
+		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
+
+		if (!resultOk) {
+			const errorCode = getErrorCodeFromActionErrorResultJSONObject(resultJSONObject);
+
+			const result: ActionErrorResult = {
+				ok: false,
+				actionInvocationId: actionInvocationId,
+				errorCode: errorCode
+			};
+			return result;
+		}
+
+		const result: ActionResult = {
+			ok: true,
+			actionInvocationId
+		};
+		return result;
+	}
+
 	public async sendUserEmailAddressUpdateEmailAddressVerificationCode(
 		sessionToken: string,
 		userEmailAddressUpdateToken: string
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_email_address_update: userEmailAddressUpdateToken
+			user_email_address_update_token: userEmailAddressUpdateToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
@@ -764,7 +799,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_email_address_update: userEmailAddressUpdateToken,
+			user_email_address_update_token: userEmailAddressUpdateToken,
 			email_address_verification_code: emailAddressVerificationCode
 		};
 
@@ -801,7 +836,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_email_address_update: userEmailAddressUpdateToken,
+			user_email_address_update_token: userEmailAddressUpdateToken,
 			password: password
 		};
 
@@ -837,7 +872,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_email_address_update: userEmailAddressUpdateToken
+			user_email_address_update_token: userEmailAddressUpdateToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
@@ -927,7 +962,7 @@ export class Client {
 	): Promise<GetUserPasswordUpdateActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_password_update: userPasswordUpdateToken
+			user_password_update_token: userPasswordUpdateToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest("get_user_password_update", argumentsJSONObject);
@@ -971,6 +1006,35 @@ export class Client {
 		return result;
 	}
 
+	public async deleteUserPasswordUpdate(sessionToken: string, userPasswordUpdateToken: string): Promise<ActionResult> {
+		const argumentsJSONObject: object = {
+			session_token: sessionToken,
+			user_password_update_token: userPasswordUpdateToken
+		};
+
+		const resultJSONObject = await this.sendActionInvocationRequest("delete_user_password_update", argumentsJSONObject);
+
+		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
+		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
+
+		if (!resultOk) {
+			const errorCode = getErrorCodeFromActionErrorResultJSONObject(resultJSONObject);
+
+			const result: ActionErrorResult = {
+				ok: false,
+				actionInvocationId: actionInvocationId,
+				errorCode: errorCode
+			};
+			return result;
+		}
+
+		const result: ActionSuccessResult = {
+			ok: true,
+			actionInvocationId
+		};
+		return result;
+	}
+
 	public async verifyUserPasswordUpdateUserPassword(
 		sessionToken: string,
 		userPasswordUpdateToken: string,
@@ -978,7 +1042,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_password_update: userPasswordUpdateToken,
+			user_password_update_token: userPasswordUpdateToken,
 			password: password
 		};
 
@@ -1015,7 +1079,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_password_update: userPasswordUpdateToken,
+			user_password_update_token: userPasswordUpdateToken,
 			password: password
 		};
 
@@ -1051,7 +1115,7 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_password_update: userPasswordUpdateToken
+			user_password_update_token: userPasswordUpdateToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
@@ -1085,7 +1149,7 @@ export class Client {
 			session_token: sessionToken
 		};
 
-		const resultJSONObject = await this.sendActionInvocationRequest("create_user_user_deletion", argumentsJSONObject);
+		const resultJSONObject = await this.sendActionInvocationRequest("create_user_deletion", argumentsJSONObject);
 
 		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
 		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
@@ -1110,21 +1174,21 @@ export class Client {
 		}
 
 		if (
-			!("user_user_deletion" in resultJSONObject.values) ||
-			typeof resultJSONObject.values.user_user_deletion !== "object" ||
-			resultJSONObject.values.user_user_deletion === null
+			!("user_deletion" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_deletion !== "object" ||
+			resultJSONObject.values.user_deletion === null
 		) {
-			throw new Error("Invalid or missing 'user_user_deletion' field");
+			throw new Error("Invalid or missing 'user_deletion' field");
 		}
-		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_user_deletion);
+		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_deletion);
 
 		if (
-			!("user_user_deletion_token" in resultJSONObject.values) ||
-			typeof resultJSONObject.values.user_user_deletion_token !== "string"
+			!("user_deletion_token" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_deletion_token !== "string"
 		) {
-			throw new Error("Invalid or missing 'user_user_deletion_token' field");
+			throw new Error("Invalid or missing 'user_deletion_token' field");
 		}
-		const userDeletionToken = resultJSONObject.values.user_user_deletion_token;
+		const userDeletionToken = resultJSONObject.values.user_deletion_token;
 
 		const result: CreateUserDeletionActionSuccessResult = {
 			ok: true,
@@ -1138,10 +1202,10 @@ export class Client {
 	public async getUserDeletion(sessionToken: string, userDeletionToken: string): Promise<GetUserDeletionActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_user_deletion: userDeletionToken
+			user_deletion_token: userDeletionToken
 		};
 
-		const resultJSONObject = await this.sendActionInvocationRequest("get_user_user_deletion", argumentsJSONObject);
+		const resultJSONObject = await this.sendActionInvocationRequest("get_user_deletion", argumentsJSONObject);
 
 		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
 		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
@@ -1166,18 +1230,47 @@ export class Client {
 		}
 
 		if (
-			!("user_user_deletion" in resultJSONObject.values) ||
-			typeof resultJSONObject.values.user_user_deletion !== "object" ||
-			resultJSONObject.values.user_user_deletion === null
+			!("user_deletion" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_deletion !== "object" ||
+			resultJSONObject.values.user_deletion === null
 		) {
-			throw new Error("Invalid or missing 'user_user_deletion' field");
+			throw new Error("Invalid or missing 'user_deletion' field");
 		}
-		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_user_deletion);
+		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_deletion);
 
 		const result: GetUserDeletionActionSuccessResult = {
 			ok: true,
 			actionInvocationId,
 			userDeletion
+		};
+		return result;
+	}
+
+	public async deleteUserDeletion(sessionToken: string, userDeletionToken: string): Promise<ActionResult> {
+		const argumentsJSONObject: object = {
+			session_token: sessionToken,
+			user_deletion_token: userDeletionToken
+		};
+
+		const resultJSONObject = await this.sendActionInvocationRequest("delete_user_deletion", argumentsJSONObject);
+
+		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
+		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
+
+		if (!resultOk) {
+			const errorCode = getErrorCodeFromActionErrorResultJSONObject(resultJSONObject);
+
+			const result: ActionErrorResult = {
+				ok: false,
+				actionInvocationId: actionInvocationId,
+				errorCode: errorCode
+			};
+			return result;
+		}
+
+		const result: ActionSuccessResult = {
+			ok: true,
+			actionInvocationId
 		};
 		return result;
 	}
@@ -1189,12 +1282,12 @@ export class Client {
 	): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_user_deletion: userDeletionToken,
+			user_deletion_token: userDeletionToken,
 			password: password
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
-			"verify_user_user_deletion_user_password",
+			"verify_user_deletion_user_password",
 			argumentsJSONObject
 		);
 
@@ -1222,10 +1315,10 @@ export class Client {
 	public async completeUserDeletion(sessionToken: string, userDeletionToken: string): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			session_token: sessionToken,
-			user_user_deletion: userDeletionToken
+			user_deletion_token: userDeletionToken
 		};
 
-		const resultJSONObject = await this.sendActionInvocationRequest("complete_user_user_deletion", argumentsJSONObject);
+		const resultJSONObject = await this.sendActionInvocationRequest("complete_user_deletion", argumentsJSONObject);
 
 		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
 		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
@@ -1248,9 +1341,9 @@ export class Client {
 		return result;
 	}
 
-	public async createUserPasswordReset(emailAddress: string): Promise<CreateUserPasswordResetActionResult> {
+	public async createUserPasswordReset(userEmailAddress: string): Promise<CreateUserPasswordResetActionResult> {
 		const argumentsJSONObject: object = {
-			email_address: emailAddress
+			user_email_address: userEmailAddress
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest("create_user_password_reset", argumentsJSONObject);
@@ -1333,13 +1426,13 @@ export class Client {
 		}
 
 		if (
-			!("userPasswordReset" in resultJSONObject.values) ||
-			typeof resultJSONObject.values.userPasswordReset !== "object" ||
-			resultJSONObject.values.userPasswordReset === null
+			!("user_password_reset" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_reset !== "object" ||
+			resultJSONObject.values.user_password_reset === null
 		) {
-			throw new Error("Invalid or missing 'userPasswordReset' field");
+			throw new Error("Invalid or user_password_reset 'userPasswordReset' field");
 		}
-		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.values.userPasswordReset);
+		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.values.user_password_reset);
 
 		const result: GetUserPasswordResetActionSuccessResult = {
 			ok: true,
@@ -1455,7 +1548,7 @@ export class Client {
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
-			"complete_user_password_reset_token",
+			"complete_user_password_reset",
 			argumentsJSONObject
 		);
 
