@@ -1483,7 +1483,7 @@ interface CompleteUserPasswordResetActionSuccessResult extends ActionSuccessResu
 	sessionToken: string;
 }
 
-interface ActionInvocationEndpointClient {
+export interface ActionInvocationEndpointClient {
 	sendActionInvocationEndpointRequest(body: string): Promise<string>;
 }
 
