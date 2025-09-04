@@ -1365,33 +1365,33 @@ function getErrorCodeFromActionErrorResultJSONObject(resultJSONObject: object): 
 	return resultJSONObject.error_code;
 }
 
-type ActionResult = ActionSuccessResult | ActionErrorResult;
+export type ActionResult = ActionSuccessResult | ActionErrorResult;
 
-interface ActionSuccessResult {
+export interface ActionSuccessResult {
 	ok: true;
 	actionInvocationId: string;
 }
 
-interface ActionErrorResult {
+export interface ActionErrorResult {
 	ok: false;
 	actionInvocationId: string;
 	errorCode: string;
 }
 
-type CreateSignupActionResult = CreateSignupActionSuccessResult | ActionErrorResult;
+export type CreateSignupActionResult = CreateSignupActionSuccessResult | ActionErrorResult;
 
-interface CreateSignupActionSuccessResult extends ActionSuccessResult {
+export interface CreateSignupActionSuccessResult extends ActionSuccessResult {
 	signup: Signup;
 	signupToken: string;
 }
 
-type GetSignupActionResult = GetSignupActionSuccessResult | ActionErrorResult;
+export type GetSignupActionResult = GetSignupActionSuccessResult | ActionErrorResult;
 
-interface GetSignupActionSuccessResult extends ActionSuccessResult {
+export interface GetSignupActionSuccessResult extends ActionSuccessResult {
 	signup: Signup;
 }
 
-type CompleteSignupActionResult = CompleteSignupActionSuccessResult | ActionErrorResult;
+export type CompleteSignupActionResult = CompleteSignupActionSuccessResult | ActionErrorResult;
 
 interface CompleteSignupActionSuccessResult extends ActionSuccessResult {
 	session: Session;
@@ -1407,78 +1407,78 @@ interface CreateSigninActionSuccessResult extends ActionSuccessResult {
 
 type GetSigninActionResult = GetSigninActionSuccessResult | ActionErrorResult;
 
-interface GetSigninActionSuccessResult extends ActionSuccessResult {
+export interface GetSigninActionSuccessResult extends ActionSuccessResult {
 	signin: Signin;
 }
 
-type CompleteSigninActionResult = CompleteSigninActionSuccessResult | ActionErrorResult;
+export type CompleteSigninActionResult = CompleteSigninActionSuccessResult | ActionErrorResult;
 
-interface CompleteSigninActionSuccessResult extends ActionSuccessResult {
+export interface CompleteSigninActionSuccessResult extends ActionSuccessResult {
 	session: Session;
 	sessionToken: string;
 }
 
-type GetSessionActionResult = GetSessionActionSuccessResult | ActionErrorResult;
+export type GetSessionActionResult = GetSessionActionSuccessResult | ActionErrorResult;
 
-interface GetSessionActionSuccessResult extends ActionSuccessResult {
+export interface GetSessionActionSuccessResult extends ActionSuccessResult {
 	session: Session;
 }
 
-type CreateUserEmailAddressUpdateActionResult = CreateUserEmailAddressUpdateActionSuccessResult | ActionErrorResult;
+export type CreateUserEmailAddressUpdateActionResult = CreateUserEmailAddressUpdateActionSuccessResult | ActionErrorResult;
 
-interface CreateUserEmailAddressUpdateActionSuccessResult extends ActionSuccessResult {
+export interface CreateUserEmailAddressUpdateActionSuccessResult extends ActionSuccessResult {
 	userEmailAddressUpdate: UserEmailAddressUpdate;
 	userEmailAddressUpdateToken: string;
 }
 
-type GetUserEmailAddressUpdateActionResult = GetUserEmailAddressUpdateActionSuccessResult | ActionErrorResult;
+export type GetUserEmailAddressUpdateActionResult = GetUserEmailAddressUpdateActionSuccessResult | ActionErrorResult;
 
-interface GetUserEmailAddressUpdateActionSuccessResult extends ActionSuccessResult {
+export interface GetUserEmailAddressUpdateActionSuccessResult extends ActionSuccessResult {
 	userEmailAddressUpdate: UserEmailAddressUpdate;
 }
 
-type CreateUserPasswordUpdateActionResult = CreateUserPasswordUpdateActionSuccessResult | ActionErrorResult;
+export type CreateUserPasswordUpdateActionResult = CreateUserPasswordUpdateActionSuccessResult | ActionErrorResult;
 
-interface CreateUserPasswordUpdateActionSuccessResult extends ActionSuccessResult {
+export interface CreateUserPasswordUpdateActionSuccessResult extends ActionSuccessResult {
 	userPasswordUpdate: UserPasswordUpdate;
 	userPasswordUpdateToken: string;
 }
 
-type GetUserPasswordUpdateActionResult = GetUserPasswordUpdateActionSuccessResult | ActionErrorResult;
+export type GetUserPasswordUpdateActionResult = GetUserPasswordUpdateActionSuccessResult | ActionErrorResult;
 
-interface GetUserPasswordUpdateActionSuccessResult extends ActionSuccessResult {
+export interface GetUserPasswordUpdateActionSuccessResult extends ActionSuccessResult {
 	userPasswordUpdate: UserPasswordUpdate;
 }
 
-type CreateUserDeletionActionResult = CreateUserDeletionActionSuccessResult | ActionErrorResult;
+export type CreateUserDeletionActionResult = CreateUserDeletionActionSuccessResult | ActionErrorResult;
 
-interface CreateUserDeletionActionSuccessResult extends ActionSuccessResult {
+export interface CreateUserDeletionActionSuccessResult extends ActionSuccessResult {
 	userDeletion: UserDeletion;
 	userDeletionToken: string;
 }
 
-type GetUserDeletionActionResult = GetUserDeletionActionSuccessResult | ActionErrorResult;
+export type GetUserDeletionActionResult = GetUserDeletionActionSuccessResult | ActionErrorResult;
 
-interface GetUserDeletionActionSuccessResult extends ActionSuccessResult {
+export interface GetUserDeletionActionSuccessResult extends ActionSuccessResult {
 	userDeletion: UserDeletion;
 }
 
-type CreateUserPasswordResetActionResult = CreateUserPasswordResetActionSuccessResult | ActionErrorResult;
+export type CreateUserPasswordResetActionResult = CreateUserPasswordResetActionSuccessResult | ActionErrorResult;
 
-interface CreateUserPasswordResetActionSuccessResult extends ActionSuccessResult {
+export interface CreateUserPasswordResetActionSuccessResult extends ActionSuccessResult {
 	userPasswordReset: UserPasswordReset;
 	userPasswordResetToken: string;
 }
 
-type GetUserPasswordResetActionResult = GetUserPasswordResetActionSuccessResult | ActionErrorResult;
+export type GetUserPasswordResetActionResult = GetUserPasswordResetActionSuccessResult | ActionErrorResult;
 
-interface GetUserPasswordResetActionSuccessResult extends ActionSuccessResult {
+export interface GetUserPasswordResetActionSuccessResult extends ActionSuccessResult {
 	userPasswordReset: UserPasswordReset;
 }
 
-type CompleteUserPasswordResetActionResult = CompleteUserPasswordResetActionSuccessResult | ActionErrorResult;
+export type CompleteUserPasswordResetActionResult = CompleteUserPasswordResetActionSuccessResult | ActionErrorResult;
 
-interface CompleteUserPasswordResetActionSuccessResult extends ActionSuccessResult {
+export interface CompleteUserPasswordResetActionSuccessResult extends ActionSuccessResult {
 	session: Session;
 	sessionToken: string;
 }
