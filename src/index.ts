@@ -5,9 +5,9 @@ export class Client {
 		this.actionInvocationEndpointClient = actionInvocationEndpointClient;
 	}
 
-	private async sendActionInvocationRequest(method: string, argumentsJSONObject: object): Promise<object> {
+	private async sendActionInvocationRequest(action: string, argumentsJSONObject: object): Promise<object> {
 		const bodyJSON = JSON.stringify({
-			method: method,
+			action: action,
 			arguments: argumentsJSONObject
 		});
 
