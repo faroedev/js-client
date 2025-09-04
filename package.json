@@ -24,8 +24,5 @@
 		"auri": "3.1.2",
 		"prettier": "^3.0.3",
 		"typescript": "^5.9.2"
-	},
-	"dependencies": {
-		"@oslojs/encoding": "^1.1.0"
 	}
 }
