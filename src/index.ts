@@ -43,18 +43,26 @@ export class Client {
 		}
 
 		if (
-			!("signup" in resultJSONObject) ||
-			typeof resultJSONObject.signup !== "object" ||
-			resultJSONObject.signup === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("signup" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.signup !== "object" ||
+			resultJSONObject.values.signup === null
 		) {
 			throw new Error("Invalid or missing 'signup' field");
 		}
-		const signup = mapJSONObjectToSignup(resultJSONObject.signup);
+		const signup = mapJSONObjectToSignup(resultJSONObject.values.signup);
 
-		if (!("signup_token" in resultJSONObject) || typeof resultJSONObject.signup_token !== "string") {
+		if (!("signup_token" in resultJSONObject.values) || typeof resultJSONObject.values.signup_token !== "string") {
 			throw new Error("Invalid or missing 'signup_token' field");
 		}
-		const signupToken = resultJSONObject.signup_token;
+		const signupToken = resultJSONObject.values.signup_token;
 
 		const result: CreateSignupActionSuccessResult = {
 			ok: true,
@@ -87,13 +95,21 @@ export class Client {
 		}
 
 		if (
-			!("signup" in resultJSONObject) ||
-			typeof resultJSONObject.signup !== "object" ||
-			resultJSONObject.signup === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("signup" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.signup !== "object" ||
+			resultJSONObject.values.signup === null
 		) {
 			throw new Error("Invalid or missing 'signup' field");
 		}
-		const signup = mapJSONObjectToSignup(resultJSONObject.signup);
+		const signup = mapJSONObjectToSignup(resultJSONObject.values.signup);
 
 		const result: GetSignupActionSuccessResult = {
 			ok: true,
@@ -131,13 +147,13 @@ export class Client {
 		return result;
 	}
 
-	public async resendSignupEmailAddressVerificationCode(signupToken: string): Promise<ActionResult> {
+	public async sendSignupEmailAddressVerificationCode(signupToken: string): Promise<ActionResult> {
 		const argumentsJSONObject: object = {
 			signup_token: signupToken
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
-			"resend_signup_email_address_verification_code",
+			"send_signup_email_address_verification_code",
 			argumentsJSONObject
 		);
 
@@ -248,18 +264,26 @@ export class Client {
 		}
 
 		if (
-			!("session" in resultJSONObject) ||
-			typeof resultJSONObject.session !== "object" ||
-			resultJSONObject.session === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("session" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.session !== "object" ||
+			resultJSONObject.values.session === null
 		) {
 			throw new Error("Invalid or missing 'session' field");
 		}
-		const session = mapJSONObjectToSession(resultJSONObject.session);
+		const session = mapJSONObjectToSession(resultJSONObject.values.session);
 
-		if (!("session_token" in resultJSONObject) || typeof resultJSONObject.session_token !== "string") {
+		if (!("session_token" in resultJSONObject.values) || typeof resultJSONObject.values.session_token !== "string") {
 			throw new Error("Invalid or missing 'session_token' field");
 		}
-		const sessionToken = resultJSONObject.session_token;
+		const sessionToken = resultJSONObject.values.session_token;
 
 		const result: CompleteSignupActionSuccessResult = {
 			ok: true,
@@ -292,18 +316,26 @@ export class Client {
 		}
 
 		if (
-			!("signin" in resultJSONObject) ||
-			typeof resultJSONObject.signin !== "object" ||
-			resultJSONObject.signin === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("signin" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.signin !== "object" ||
+			resultJSONObject.values.signin === null
 		) {
 			throw new Error("Invalid or missing 'signin' field");
 		}
-		const signin = mapJSONObjectToSignin(resultJSONObject.signin);
+		const signin = mapJSONObjectToSignin(resultJSONObject.values.signin);
 
-		if (!("signin_token" in resultJSONObject) || typeof resultJSONObject.signin_token !== "string") {
+		if (!("signin_token" in resultJSONObject.values) || typeof resultJSONObject.values.signin_token !== "string") {
 			throw new Error("Invalid or missing 'signin_token' field");
 		}
-		const signinToken = resultJSONObject.signin_token;
+		const signinToken = resultJSONObject.values.signin_token;
 
 		const result: CreateSigninActionSuccessResult = {
 			ok: true,
@@ -336,13 +368,21 @@ export class Client {
 		}
 
 		if (
-			!("signin" in resultJSONObject) ||
-			typeof resultJSONObject.signin !== "object" ||
-			resultJSONObject.signin === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("signin" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.signin !== "object" ||
+			resultJSONObject.values.signin === null
 		) {
 			throw new Error("Invalid or missing 'signin' field");
 		}
-		const signin = mapJSONObjectToSignin(resultJSONObject.signin);
+		const signin = mapJSONObjectToSignin(resultJSONObject.values.signin);
 
 		const result: GetSigninActionSuccessResult = {
 			ok: true,
@@ -431,18 +471,26 @@ export class Client {
 		}
 
 		if (
-			!("session" in resultJSONObject) ||
-			typeof resultJSONObject.session !== "object" ||
-			resultJSONObject.session === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("session" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.session !== "object" ||
+			resultJSONObject.values.session === null
 		) {
 			throw new Error("Invalid or missing 'session' field");
 		}
-		const session = mapJSONObjectToSession(resultJSONObject.session);
+		const session = mapJSONObjectToSession(resultJSONObject.values.session);
 
-		if (!("session_token" in resultJSONObject) || typeof resultJSONObject.session_token !== "string") {
+		if (!("session_token" in resultJSONObject.values) || typeof resultJSONObject.values.session_token !== "string") {
 			throw new Error("Invalid or missing 'session_token' field");
 		}
-		const sessionToken = resultJSONObject.session_token;
+		const sessionToken = resultJSONObject.values.session_token;
 
 		const result: CompleteSigninActionSuccessResult = {
 			ok: true,
@@ -475,13 +523,21 @@ export class Client {
 		}
 
 		if (
-			!("session" in resultJSONObject) ||
-			typeof resultJSONObject.session !== "object" ||
-			resultJSONObject.session === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("session" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.session !== "object" ||
+			resultJSONObject.values.session === null
 		) {
 			throw new Error("Invalid or missing 'session' field");
 		}
-		const session = mapJSONObjectToSession(resultJSONObject.session);
+		const session = mapJSONObjectToSession(resultJSONObject.values.session);
 
 		const result: GetSessionActionSuccessResult = {
 			ok: true,
@@ -576,21 +632,31 @@ export class Client {
 		}
 
 		if (
-			!("user_email_address_update" in resultJSONObject) ||
-			typeof resultJSONObject.user_email_address_update !== "object" ||
-			resultJSONObject.user_email_address_update === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_email_address_update" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_email_address_update !== "object" ||
+			resultJSONObject.values.user_email_address_update === null
 		) {
 			throw new Error("Invalid or missing 'user_email_address_update' field");
 		}
-		const userEmailAddressUpdate = mapJSONObjectToUserEmailAddressUpdate(resultJSONObject.user_email_address_update);
+		const userEmailAddressUpdate = mapJSONObjectToUserEmailAddressUpdate(
+			resultJSONObject.values.user_email_address_update
+		);
 
 		if (
-			!("user_email_address_update_token" in resultJSONObject) ||
-			typeof resultJSONObject.user_email_address_update_token !== "string"
+			!("user_email_address_update_token" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_email_address_update_token !== "string"
 		) {
 			throw new Error("Invalid or missing 'user_email_address_update_token' field");
 		}
-		const userEmailAddressUpdateToken = resultJSONObject.user_email_address_update_token;
+		const userEmailAddressUpdateToken = resultJSONObject.values.user_email_address_update_token;
 
 		const result: CreateUserEmailAddressUpdateActionSuccessResult = {
 			ok: true,
@@ -630,13 +696,23 @@ export class Client {
 		}
 
 		if (
-			!("user_email_address_update" in resultJSONObject) ||
-			typeof resultJSONObject.user_email_address_update !== "object" ||
-			resultJSONObject.user_email_address_update === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_email_address_update" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_email_address_update !== "object" ||
+			resultJSONObject.values.user_email_address_update === null
 		) {
 			throw new Error("Invalid or missing 'user_email_address_update' field");
 		}
-		const userEmailAddressUpdate = mapJSONObjectToUserEmailAddressUpdate(resultJSONObject.user_email_address_update);
+		const userEmailAddressUpdate = mapJSONObjectToUserEmailAddressUpdate(
+			resultJSONObject.values.user_email_address_update
+		);
 
 		const result: GetUserEmailAddressUpdateActionSuccessResult = {
 			ok: true,
@@ -646,7 +722,7 @@ export class Client {
 		return result;
 	}
 
-	public async resendUserEmailAddressUpdateEmailAddressVerificationCode(
+	public async sendUserEmailAddressUpdateEmailAddressVerificationCode(
 		sessionToken: string,
 		userEmailAddressUpdateToken: string
 	): Promise<ActionResult> {
@@ -656,7 +732,7 @@ export class Client {
 		};
 
 		const resultJSONObject = await this.sendActionInvocationRequest(
-			"resend_user_email_address_update_email_address_verification_code",
+			"send_user_email_address_update_email_address_verification_code",
 			argumentsJSONObject
 		);
 
@@ -812,21 +888,29 @@ export class Client {
 		}
 
 		if (
-			!("user_password_update" in resultJSONObject) ||
-			typeof resultJSONObject.user_password_update !== "object" ||
-			resultJSONObject.user_password_update === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_password_update" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_update !== "object" ||
+			resultJSONObject.values.user_password_update === null
 		) {
 			throw new Error("Invalid or missing 'user_password_update' field");
 		}
-		const userPasswordUpdate = mapJSONObjectToUserPasswordUpdate(resultJSONObject.user_password_update);
+		const userPasswordUpdate = mapJSONObjectToUserPasswordUpdate(resultJSONObject.values.user_password_update);
 
 		if (
-			!("user_password_update_token" in resultJSONObject) ||
-			typeof resultJSONObject.user_password_update_token !== "string"
+			!("user_password_update_token" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_update_token !== "string"
 		) {
 			throw new Error("Invalid or missing 'user_password_update_token' field");
 		}
-		const userPasswordUpdateToken = resultJSONObject.user_password_update_token;
+		const userPasswordUpdateToken = resultJSONObject.values.user_password_update_token;
 
 		const result: CreateUserPasswordUpdateActionSuccessResult = {
 			ok: true,
@@ -863,13 +947,21 @@ export class Client {
 		}
 
 		if (
-			!("user_password_update" in resultJSONObject) ||
-			typeof resultJSONObject.user_password_update !== "object" ||
-			resultJSONObject.user_password_update === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_password_update" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_update !== "object" ||
+			resultJSONObject.values.user_password_update === null
 		) {
 			throw new Error("Invalid or missing 'user_password_update' field");
 		}
-		const userPasswordUpdate = mapJSONObjectToUserPasswordUpdate(resultJSONObject.user_password_update);
+		const userPasswordUpdate = mapJSONObjectToUserPasswordUpdate(resultJSONObject.values.user_password_update);
 
 		const result: GetUserPasswordUpdateActionSuccessResult = {
 			ok: true,
@@ -1010,21 +1102,29 @@ export class Client {
 		}
 
 		if (
-			!("user_user_deletion" in resultJSONObject) ||
-			typeof resultJSONObject.user_user_deletion !== "object" ||
-			resultJSONObject.user_user_deletion === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_user_deletion" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_user_deletion !== "object" ||
+			resultJSONObject.values.user_user_deletion === null
 		) {
 			throw new Error("Invalid or missing 'user_user_deletion' field");
 		}
-		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.user_user_deletion);
+		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_user_deletion);
 
 		if (
-			!("user_user_deletion_token" in resultJSONObject) ||
-			typeof resultJSONObject.user_user_deletion_token !== "string"
+			!("user_user_deletion_token" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_user_deletion_token !== "string"
 		) {
 			throw new Error("Invalid or missing 'user_user_deletion_token' field");
 		}
-		const userDeletionToken = resultJSONObject.user_user_deletion_token;
+		const userDeletionToken = resultJSONObject.values.user_user_deletion_token;
 
 		const result: CreateUserDeletionActionSuccessResult = {
 			ok: true,
@@ -1058,13 +1158,21 @@ export class Client {
 		}
 
 		if (
-			!("user_user_deletion" in resultJSONObject) ||
-			typeof resultJSONObject.user_user_deletion !== "object" ||
-			resultJSONObject.user_user_deletion === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_user_deletion" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_user_deletion !== "object" ||
+			resultJSONObject.values.user_user_deletion === null
 		) {
 			throw new Error("Invalid or missing 'user_user_deletion' field");
 		}
-		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.user_user_deletion);
+		const userDeletion = mapJSONObjectToUserDeletion(resultJSONObject.values.user_user_deletion);
 
 		const result: GetUserDeletionActionSuccessResult = {
 			ok: true,
@@ -1162,21 +1270,29 @@ export class Client {
 		}
 
 		if (
-			!("user_password_reset" in resultJSONObject) ||
-			typeof resultJSONObject.user_password_reset !== "object" ||
-			resultJSONObject.user_password_reset === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("user_password_reset" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_reset !== "object" ||
+			resultJSONObject.values.user_password_reset === null
 		) {
 			throw new Error("Invalid or missing 'user_password_reset' field");
 		}
-		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.user_password_reset);
+		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.values.user_password_reset);
 
 		if (
-			!("user_password_reset_token" in resultJSONObject) ||
-			typeof resultJSONObject.user_password_reset_token !== "string"
+			!("user_password_reset_token" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.user_password_reset_token !== "string"
 		) {
 			throw new Error("Invalid or missing 'user_password_reset_token' field");
 		}
-		const userPasswordResetToken = resultJSONObject.user_password_reset_token;
+		const userPasswordResetToken = resultJSONObject.values.user_password_reset_token;
 
 		const result: CreateUserPasswordResetActionSuccessResult = {
 			ok: true,
@@ -1209,13 +1325,21 @@ export class Client {
 		}
 
 		if (
-			!("userPasswordReset" in resultJSONObject) ||
-			typeof resultJSONObject.userPasswordReset !== "object" ||
-			resultJSONObject.userPasswordReset === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("userPasswordReset" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.userPasswordReset !== "object" ||
+			resultJSONObject.values.userPasswordReset === null
 		) {
 			throw new Error("Invalid or missing 'userPasswordReset' field");
 		}
-		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.userPasswordReset);
+		const userPasswordReset = mapJSONObjectToUserPasswordReset(resultJSONObject.values.userPasswordReset);
 
 		const result: GetUserPasswordResetActionSuccessResult = {
 			ok: true,
@@ -1350,18 +1474,26 @@ export class Client {
 		}
 
 		if (
-			!("session" in resultJSONObject) ||
-			typeof resultJSONObject.session !== "object" ||
-			resultJSONObject.session === null
+			!("values" in resultJSONObject) ||
+			typeof resultJSONObject.values !== "object" ||
+			resultJSONObject.values === null
+		) {
+			throw new Error("Invalid or missing 'values' field");
+		}
+
+		if (
+			!("session" in resultJSONObject.values) ||
+			typeof resultJSONObject.values.session !== "object" ||
+			resultJSONObject.values.session === null
 		) {
 			throw new Error("Invalid or missing 'session' field");
 		}
-		const session = mapJSONObjectToSession(resultJSONObject.session);
+		const session = mapJSONObjectToSession(resultJSONObject.values.session);
 
-		if (!("session_token" in resultJSONObject) || typeof resultJSONObject.session_token !== "string") {
+		if (!("session_token" in resultJSONObject.values) || typeof resultJSONObject.values.session_token !== "string") {
 			throw new Error("Invalid or missing 'session_token' field");
 		}
-		const sessionToken = resultJSONObject.session_token;
+		const sessionToken = resultJSONObject.values.session_token;
 
 		const result: CompleteUserPasswordResetActionSuccessResult = {
 			ok: true,
