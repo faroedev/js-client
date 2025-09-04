@@ -1,9 +1,7 @@
 export class Client {
-	public endpoint: string;
 	public actionInvocationEndpointClient: ActionInvocationEndpointClient;
 
-	constructor(endpoint: string, actionInvocationEndpointClient: ActionInvocationEndpointClient) {
-		this.endpoint = endpoint;
+	constructor(actionInvocationEndpointClient: ActionInvocationEndpointClient) {
 		this.actionInvocationEndpointClient = actionInvocationEndpointClient;
 	}
 
