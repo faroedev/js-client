@@ -197,6 +197,35 @@ export class Client {
 		return result;
 	}
 
+	public async setSignupPassword(signupToken: string, password: string): Promise<ActionResult> {
+		const argumentsJSONObject: object = {
+			signup_token: signupToken,
+			password: password
+		};
+
+		const resultJSONObject = await this.sendActionInvocationRequest("set_signup_password", argumentsJSONObject);
+
+		const resultOk = getOkFromActionResultJSONObject(resultJSONObject);
+		const actionInvocationId = getActionInvocationIdFromActionResultJSONObject(resultJSONObject);
+
+		if (!resultOk) {
+			const errorCode = getErrorCodeFromActionErrorResultJSONObject(resultJSONObject);
+
+			const result: ActionErrorResult = {
+				ok: false,
+				actionInvocationId: actionInvocationId,
+				errorCode: errorCode
+			};
+			return result;
+		}
+
+		const result: ActionResult = {
+			ok: true,
+			actionInvocationId
+		};
+		return result;
+	}
+
 	public async completeSignup(signupToken: string): Promise<CompleteSignupActionResult> {
 		const argumentsJSONObject: object = {
 			signup_token: signupToken
@@ -1424,7 +1453,9 @@ export interface GetSessionActionSuccessResult extends ActionSuccessResult {
 	session: Session;
 }
 
-export type CreateUserEmailAddressUpdateActionResult = CreateUserEmailAddressUpdateActionSuccessResult | ActionErrorResult;
+export type CreateUserEmailAddressUpdateActionResult =
+	| CreateUserEmailAddressUpdateActionSuccessResult
+	| ActionErrorResult;
 
 export interface CreateUserEmailAddressUpdateActionSuccessResult extends ActionSuccessResult {
 	userEmailAddressUpdate: UserEmailAddressUpdate;
