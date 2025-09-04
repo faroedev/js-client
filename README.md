@@ -1,4 +1,6 @@
-# Faroe server JavaScript client
+# @faroe/client
+
+A JavaScript client for Faroe servers.
 
 ## Overview
 
